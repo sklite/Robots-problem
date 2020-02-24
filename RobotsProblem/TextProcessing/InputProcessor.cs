@@ -52,18 +52,30 @@ namespace RobotsProblem.TextProcessing
             return result;
         }
 
-        public void ReadInput(string input, out IWorld world, out IEnumerable<IRobot> robots)
+        public bool TryReadInput(string input, out IWorld world, out IEnumerable<IRobot> robots)
         {
-            if (string.IsNullOrEmpty(input))
-                throw new ArgumentException("Input settings cannot be empty", nameof(input));
+            try
+            {
+                if (string.IsNullOrEmpty(input))
+                    throw new ArgumentException("Input settings cannot be empty", nameof(input));
 
-            var inputLines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            var inputQueue = new Queue<string>(inputLines);
+                var inputLines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+                var inputQueue = new Queue<string>(inputLines);
 
-            var worldSize = ReadWorldSize(inputQueue.Dequeue());
-            robots = ReadRobotSettings(inputQueue);
+                var worldSize = ReadWorldSize(inputQueue.Dequeue());
+                robots = ReadRobotSettings(inputQueue);
 
-            world = new MartianWorld(worldSize.Width, worldSize.Height);
+                world = new MartianWorld(worldSize.Width, worldSize.Height);
+                return true;
+            }
+            catch (Exception e)
+            {
+                world = null;
+                robots = null;
+                Console.WriteLine(e.Message);
+                return false;
+            }
+
         }
     }
 }

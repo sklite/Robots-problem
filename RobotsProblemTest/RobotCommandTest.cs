@@ -48,5 +48,17 @@ namespace RobotsProblemTest
 
             Assert.AreEqual(robot.Orientation, RobotOrientation.West);
         }
+
+        [Test]
+        public void TestRobotMoveCommand()
+        {
+            var world = new MartianWorld(3,3);
+            var rotateLeft = new ForwardCommand(world);
+            var robot = new Robot(new Point(0, 0), RobotOrientation.North);
+
+            rotateLeft.ExecuteCommandFor(robot);
+
+            Assert.AreEqual(robot.Coordinates, new Point(0,1));
+        }
     }
 }

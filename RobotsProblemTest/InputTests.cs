@@ -27,7 +27,7 @@ namespace RobotsProblemTest
             IEnumerable<IRobot> robots;
 
 
-            inputProcessor.ReadInput(inputStr, out world, out robots);
+            inputProcessor.TryReadInput(inputStr, out world, out robots);
             
 
             Assert.NotNull(world);
