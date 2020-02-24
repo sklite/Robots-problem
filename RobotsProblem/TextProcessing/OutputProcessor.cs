@@ -8,7 +8,6 @@ namespace RobotsProblem.TextProcessing
     {
         public string GetReports(IEnumerable<IRobot> robots)
         {
-
             var result = new StringBuilder();
             result.AppendLine("Output:");
             foreach (var robot in robots)
