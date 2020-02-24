@@ -67,5 +67,8 @@ LLFFFLFLFL
 Sample Output 
 
 11 E 
+
 3 3 N LOST 
+
 2 3 S 
+
